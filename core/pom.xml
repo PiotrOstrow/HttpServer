@@ -10,6 +10,26 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>http</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>spi</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Plugin modules -->
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>get</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <parent>
@@ -49,10 +69,6 @@
             <resource>
                 <directory>../htdocs</directory>
                 <targetPath>${project.build.directory}/htdocs</targetPath>
-            </resource>
-            <resource> <!-- -->
-                <directory>../htdocs</directory>
-                <targetPath>${project.build.directory}/classes/htdocs</targetPath>
             </resource>
         </resources>
     </build>

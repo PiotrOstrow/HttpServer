@@ -1,4 +1,4 @@
-package org.example;
+package org.example.http;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +14,6 @@ public class HttpRequest {
 
 	public HttpRequest(BufferedReader reader) throws IOException {
 		String line = reader.readLine();
-		System.out.println(line);
 		String[] split = line.split(" ");
 
 		//GET /index.html HTTP/1.1
@@ -22,15 +21,14 @@ public class HttpRequest {
 			throw new RuntimeException("Invalid http header");
 
 		method = split[0];
-		address = split[1];
+
+		// default to index.html
+		address = split[1].equals("/") ? "index.html" : split[1];
 
 		while((line = reader.readLine()) != null && !line.isEmpty()) {
 			String[] splitHeader = line.split(":");
-
-			System.out.println(line);
 			headers.put(splitHeader[0], splitHeader[1].trim());
 		}
-		System.out.println();
 	}
 
 	public String getHeader(String header) {
