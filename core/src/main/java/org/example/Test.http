@@ -1,0 +1,4 @@
+GET http://localhost:80/index.html
+Accept: application/json
+
+###
