@@ -1,5 +1,6 @@
 package org.example.http;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +26,11 @@ public class HttpResponse {
 
 	public void setBody(byte[] data) {
 		body = data;
-		setHeader("Content-length", String.valueOf(data.length));
+		setHeader("Content-Length", String.valueOf(data.length));
+	}
+
+	public void setBody(String data) {
+		setBody(data.getBytes(StandardCharsets.UTF_8));
 	}
 
 	public String getStatusLine() {

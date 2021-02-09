@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 
 public class HttpRequestParser {
 
@@ -11,18 +13,28 @@ public class HttpRequestParser {
 		HttpRequest request;
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
+		// parse start line
 		String line = reader.readLine();
 		String[] split = line.split(" ");
 
 		if(split.length < 3)
 			throw new RuntimeException("Invalid http header");
 
-		String method = split[0];
+		request = new HttpRequest(split[0]);
+		String address = split[1];
+
+		// has GET arguments
+		if(split[1].contains("?")) {
+			address = split[1].substring(0, split[1].indexOf("?"));
+			String args = split[1].substring(split[1].indexOf("?") + 1);
+			parseParameters(request, args);
+		}
 
 		// default to index.html
-		String address = split[1].equals("/") ? "index.html" : split[1];
+		if(address.equals("/"))
+			address = "/index.html";
 
-		request = new HttpRequest(method, address);
+		request.setAddress(address);
 
 		while((line = reader.readLine()) != null && !line.isEmpty()) {
 			String[] splitHeader = line.split(":");
@@ -31,13 +43,26 @@ public class HttpRequestParser {
 
 		// TODO: read body
 
+		// assumed application/x-www-form-urlencoded
+		String contentType = request.getHeader("Content-Type");
 		String contentLength = request.getHeader("Content-Length");
-		if(contentLength != null){
-			byte[] buffer = new byte[Integer.parseInt(contentLength)];
-
-			System.out.println(new String(buffer));
+		if(contentLength != null) {
+			char[] buffer = new char[Integer.parseInt(contentLength)];
+			reader.read(buffer);
+			parseParameters(request, new String(buffer));
 		}
 
 		return request;
+	}
+
+
+	private static void parseParameters(HttpRequest request, String parameterLine) {
+		String[] args = parameterLine.split("&");
+		for(String s : args) {
+			int index = s.indexOf("=");
+			String paramName = URLDecoder.decode(s.substring(0, index), StandardCharsets.UTF_8);
+			String value = URLDecoder.decode(s.substring(index + 1), StandardCharsets.UTF_8);
+			request.addParameter(paramName, value);
+		}
 	}
 }

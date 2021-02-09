@@ -5,13 +5,22 @@ import java.util.Map;
 
 public class HttpRequest {
 
-	private final String method;
-	private final String address;
+	private String method;
+	private String address;
 
 	private final Map<String, String> headers = new HashMap<>();
+	private final Map<String, String> parameters = new HashMap<>();
+
+	public HttpRequest(String method) {
+		this.method = method;
+	}
 
 	public HttpRequest(String method, String address) {
 		this.method = method;
+		this.address = address;
+	}
+
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
@@ -27,7 +36,15 @@ public class HttpRequest {
 		return address;
 	}
 
+	public String getParameter(String name) {
+		return parameters.get(name);
+	}
+
 	protected void addHeader(String header, String value) {
 		headers.put(header, value);
+	}
+
+	public void addParameter(String name, String value) {
+		parameters.put(name, value);
 	}
 }
