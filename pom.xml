@@ -31,7 +31,7 @@
         <module>fileutil</module>
         <module>http</module>
         <module>spi</module>
-        <module>get</module>
+        <module>method</module>
     </modules>
 
 

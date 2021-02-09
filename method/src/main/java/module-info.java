@@ -1,9 +1,9 @@
-import org.example.get.GetHandler;
+import org.example.get.MethodHandler;
 import org.example.spi.RequestHandler;
 
-module get {
+module method {
 	requires org.example.http;
 	requires org.example.spi;
 	requires org.example.fileutils;
-	provides RequestHandler with GetHandler;
+	provides RequestHandler with MethodHandler;
 }

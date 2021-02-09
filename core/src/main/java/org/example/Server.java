@@ -1,12 +1,11 @@
 package org.example;
 
 import org.example.http.HttpRequest;
+import org.example.http.HttpRequestParser;
 import org.example.http.HttpResponse;
 import org.example.spi.RequestHandler;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -29,10 +28,8 @@ public class Server {
 
 	private static void handleConnection(Socket socket) {
 		try {
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
 			// parse request
-			HttpRequest request = new HttpRequest(bufferedReader);
+			HttpRequest request = HttpRequestParser.parse(socket.getInputStream());
 
 			// get request handler
 			RequestHandler requestHandler = ServiceProvider.getRequestHandler(request);

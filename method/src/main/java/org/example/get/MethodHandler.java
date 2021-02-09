@@ -10,8 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-@Method("GET")
-public class GetHandler implements RequestHandler {
+@Method({"GET", "POST", "HEAD"})
+public class MethodHandler implements RequestHandler {
 
 	@Override
 	public HttpResponse handleRequest(HttpRequest request) {
@@ -21,7 +21,9 @@ public class GetHandler implements RequestHandler {
 				HttpResponse response = new HttpResponse();
 				String contentType = Files.probeContentType(file.toPath());
 				response.setHeader("Content-type", contentType);
-				response.setBody(FileReader.readFromFile(file));
+
+				if(!request.getMethod().equalsIgnoreCase("HEAD"))
+					response.setBody(FileReader.readFromFile(file));
 
 				return response;
 			}
