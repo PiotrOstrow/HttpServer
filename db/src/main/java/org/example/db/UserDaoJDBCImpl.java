@@ -23,7 +23,7 @@ public class UserDaoJDBCImpl implements UserDAO {
     }
 
     public List<User> listFromStatement(PreparedStatement stmt) throws SQLException {
-        List<User> list = new ArrayList();
+        List<User> list = new ArrayList<>();
         ResultSet resultSet = stmt.executeQuery();
         while (resultSet.next()) {
             list.add(new User(resultSet.getString("id"),
