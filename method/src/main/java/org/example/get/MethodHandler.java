@@ -1,6 +1,6 @@
 package org.example.get;
 
-import org.example.fileutils.FileReader;
+import org.example.fileutil.FileReader;
 import org.example.http.HttpRequest;
 import org.example.http.HttpResponse;
 import org.example.spi.Method;

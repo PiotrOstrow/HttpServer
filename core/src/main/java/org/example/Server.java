@@ -61,4 +61,6 @@ public class Server {
 		// probably remove this line if one connection is to handle multiple requests
 		socket.getOutputStream().close();
 	}
+
+
 }

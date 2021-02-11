@@ -32,6 +32,7 @@
         <module>http</module>
         <module>spi</module>
         <module>method</module>
+        <module>db</module>
     </modules>
 
 

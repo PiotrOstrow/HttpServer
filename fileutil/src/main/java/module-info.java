@@ -1,3 +1,3 @@
-open module org.example.fileutils {
-	exports org.example.fileutils;
+open module org.example.fileutil {
+	exports org.example.fileutil;
 }

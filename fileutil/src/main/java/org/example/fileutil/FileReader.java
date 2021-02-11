@@ -1,4 +1,4 @@
-package org.example.fileutils;
+package org.example.fileutil;
 
 import java.io.File;
 import java.io.FileInputStream;
