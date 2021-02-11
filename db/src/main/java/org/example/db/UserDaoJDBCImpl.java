@@ -11,7 +11,7 @@ public class UserDaoJDBCImpl implements UserDAO {
 
     public UserDaoJDBCImpl() {
         try{
-            connection = DriverManager.getConnection("jdbc:sqlserver://localhost;username=sofsin;password=01020304;database=everyloop");
+            connection = DriverManager.getConnection("jdbc:sqlserver://localhost;username=java;password=password;database=everyloop");
             findAll = connection.prepareStatement("select * from users");
             findByUserName = connection.prepareStatement("select * from users where userName like ?");
             findByFirstName = connection.prepareStatement("select * from users where firstName like ?");

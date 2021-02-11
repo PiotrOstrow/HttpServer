@@ -33,7 +33,7 @@
         <module>spi</module>
         <module>method</module>
         <module>db</module>
-        <module>example</module>
+        <module>plugin</module>
     </modules>
 
 
