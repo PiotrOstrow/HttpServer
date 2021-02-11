@@ -34,6 +34,7 @@
         <module>method</module>
         <module>db</module>
         <module>example</module>
+        <module>json</module>
     </modules>
 
 
