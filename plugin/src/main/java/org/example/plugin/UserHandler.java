@@ -1,4 +1,4 @@
-package org.example.ex;
+package org.example.plugin;
 
 import com.google.gson.Gson;
 import org.example.db.User;
@@ -12,7 +12,7 @@ import org.example.spi.RequestHandler;
 import java.util.List;
 
 @Address("/users")
-public class Example implements RequestHandler {
+public class UserHandler implements RequestHandler {
 
 	@Override
 	public HttpResponse handleRequest(HttpRequest httpRequest) {
