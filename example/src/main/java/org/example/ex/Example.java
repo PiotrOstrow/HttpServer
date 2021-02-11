@@ -1,5 +1,6 @@
 package org.example.ex;
 
+import com.google.gson.Gson;
 import org.example.db.User;
 import org.example.db.UserDAO;
 import org.example.db.UserDaoJDBCImpl;
@@ -22,11 +23,13 @@ public class Example implements RequestHandler {
 
 		UserDAO userDAO = new UserDaoJDBCImpl();
 		List<User> list = userDAO.getAll();
-		String body = list.toString();
+
+		Gson gson = new Gson();
+		String json = gson.toJson(list);
 
 		HttpResponse response = new HttpResponse();
-		response.setHeader("Content-Type", "text/html");
-		response.setBody(body);
+		response.setHeader("Content-Type", "application/json");
+		response.setBody(json);
 
 		return response;
 	}

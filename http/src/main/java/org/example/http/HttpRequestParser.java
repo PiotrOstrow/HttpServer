@@ -15,6 +15,8 @@ public class HttpRequestParser {
 
 		// parse start line
 		String line = reader.readLine();
+		if(line == null)
+			System.out.println();
 		String[] split = line.split(" ");
 
 		if(split.length < 3)
