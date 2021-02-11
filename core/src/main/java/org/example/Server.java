@@ -28,19 +28,21 @@ public class Server {
 
 	private static void handleConnection(Socket socket) {
 		try {
-			// parse request
-			HttpRequest request = HttpRequestParser.parse(socket.getInputStream());
+			while(true) {
+				// parse request
+				HttpRequest request = HttpRequestParser.parse(socket.getInputStream());
 
-			// get request handler
-			RequestHandler requestHandler = ServiceProvider.getRequestHandler(request);
+				// get request handler
+				RequestHandler requestHandler = ServiceProvider.getRequestHandler(request);
 
-			HttpResponse httpResponse = null;
-			if(requestHandler != null)
-				httpResponse = requestHandler.handleRequest(request);
-			else
-				httpResponse = new HttpResponse(404, "Not Found");
+				HttpResponse httpResponse = null;
+				if (requestHandler != null)
+					httpResponse = requestHandler.handleRequest(request);
+				else
+					httpResponse = new HttpResponse(404, "Not Found");
 
-			sendResponse(socket, httpResponse);
+				sendResponse(socket, httpResponse);
+			}
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -59,7 +61,7 @@ public class Server {
 		socket.getOutputStream().flush();
 
 		// probably remove this line if one connection is to handle multiple requests
-		socket.getOutputStream().close();
+		//socket.getOutputStream().close();
 	}
 
 
