@@ -10,7 +10,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>example</artifactId>
+    <artifactId>plugin</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>

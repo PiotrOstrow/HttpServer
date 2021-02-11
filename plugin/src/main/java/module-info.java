@@ -1,4 +1,4 @@
-import org.example.ex.Example;
+import org.example.plugin.UserHandler;
 import org.example.spi.RequestHandler;
 
 module org.example.plugin {
@@ -7,5 +7,5 @@ module org.example.plugin {
 	requires org.example.fileutil;
 	requires org.example.db;
 	requires com.google.gson;
-	provides RequestHandler with Example;
+	provides RequestHandler with UserHandler;
 }
