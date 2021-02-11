@@ -1,7 +1,7 @@
 import org.example.ex.Example;
 import org.example.spi.RequestHandler;
 
-module example {
+module org.example.plugin {
 	requires org.example.http;
 	requires org.example.spi;
 	requires org.example.fileutil;
