@@ -1,3 +1,4 @@
+import org.example.plugin.CommentsHandler;
 import org.example.plugin.UserHandler;
 import org.example.spi.RequestHandler;
 
@@ -7,5 +8,5 @@ module org.example.plugin {
 	requires org.example.fileutil;
 	requires org.example.db;
 	requires com.google.gson;
-	provides RequestHandler with UserHandler;
+	provides RequestHandler with UserHandler, CommentsHandler;
 }
