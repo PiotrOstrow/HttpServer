@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 
 @Entity
-@Table(name = "dbo.Comments")
+@Table(name = "Comments", schema = "dbo")
 public class Comment {
 
 	@Id
