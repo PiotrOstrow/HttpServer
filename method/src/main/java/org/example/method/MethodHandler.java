@@ -1,4 +1,4 @@
-package org.example.get;
+package org.example.method;
 
 import org.example.fileutil.FileReader;
 import org.example.http.HttpRequest;

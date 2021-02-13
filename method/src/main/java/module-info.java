@@ -1,4 +1,4 @@
-import org.example.get.MethodHandler;
+import org.example.method.MethodHandler;
 import org.example.spi.RequestHandler;
 
 module method {
