@@ -16,7 +16,7 @@ public class HttpRequestParser {
 		// parse start line
 		String line = reader.readLine();
 		if(line == null)
-			System.out.println();
+			throw new IOException("Connection closed");
 		String[] split = line.split(" ");
 
 		if(split.length < 3)
@@ -35,6 +35,9 @@ public class HttpRequestParser {
 		// default to index.html
 		if(address.equals("/"))
 			address = "/index.html";
+
+		if(address.endsWith("/"))
+			address = address.substring(0, address.length() - 1);
 
 		request.setAddress(address);
 

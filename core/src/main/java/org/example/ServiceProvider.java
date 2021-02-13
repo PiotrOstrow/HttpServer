@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.http.HttpRequest;
+import org.example.http.HttpResponse;
 import org.example.spi.Address;
 import org.example.spi.Method;
 import org.example.spi.RequestHandler;
@@ -27,7 +28,7 @@ public class ServiceProvider {
 				&& Arrays.stream(p.type().getAnnotation(Method.class).value()).anyMatch(httpRequest.getMethod()::equalsIgnoreCase))
 				.map(ServiceLoader.Provider::get).findFirst();
 
-		return handler.orElse(null);
+		return handler.orElse(httpRequest1 -> new HttpResponse(404, "Not found"));
 
 	}
 }

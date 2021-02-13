@@ -24,7 +24,7 @@ public class UserHandler implements RequestHandler {
 		String json = gson.toJson(list);
 
 		HttpResponse response = new HttpResponse();
-		response.setHeader("Content-Type", "application/json");
+		response.setHeader("Content-Type", "application/json; charset=utf-8");
 		response.setBody(json);
 
 		return response;

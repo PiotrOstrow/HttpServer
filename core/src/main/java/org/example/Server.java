@@ -28,20 +28,11 @@ public class Server {
 
 	private static void handleConnection(Socket socket) {
 		try {
-			// parse request
 			HttpRequest request = HttpRequestParser.parse(socket.getInputStream());
-
-			// get request handler
 			RequestHandler requestHandler = ServiceProvider.getRequestHandler(request);
-
-			HttpResponse httpResponse = null;
-			if (requestHandler != null)
-				httpResponse = requestHandler.handleRequest(request);
-			else
-				httpResponse = new HttpResponse(404, "Not Found");
-
+			HttpResponse httpResponse = requestHandler.handleRequest(request);
 			sendResponse(socket, httpResponse);
-		}catch (IOException e) {
+		} catch (IOException | RuntimeException e) {
 			e.printStackTrace();
 		}
 	}
