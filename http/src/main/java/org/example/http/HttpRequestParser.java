@@ -22,7 +22,7 @@ public class HttpRequestParser {
 		if(split.length < 3)
 			throw new RuntimeException("Invalid http header");
 
-		request = new HttpRequest(split[0]);
+		request = new HttpRequest(HttpMethod.valueOf(split[0]));
 		String address = split[1];
 
 		// has GET arguments

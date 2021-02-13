@@ -23,7 +23,7 @@ public class MethodHandler implements RequestHandler {
 				String contentType = Files.probeContentType(file.toPath());
 				response.setHeader("Content-type", contentType);
 
-				if(!request.getMethod().equalsIgnoreCase("HEAD"))
+				if(request.getMethod() != HttpMethod.HEAD)
 					response.setBody(FileReader.readFromFile(file));
 
 				return response;

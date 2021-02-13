@@ -25,7 +25,7 @@ public class ServiceProvider {
 
 		// look for method handler
 		handler = serviceLoader.stream().filter(p -> p.type().isAnnotationPresent(Method.class)
-				&& Arrays.stream(p.type().getAnnotation(Method.class).value()).anyMatch(httpRequest.getMethod()))
+				&& Arrays.stream(p.type().getAnnotation(Method.class).value()).anyMatch(httpMethod -> httpMethod == httpRequest.getMethod()))
 				.map(ServiceLoader.Provider::get).findFirst();
 
 		return handler.orElse(httpRequest1 -> new HttpResponse(404, "Not found"));
