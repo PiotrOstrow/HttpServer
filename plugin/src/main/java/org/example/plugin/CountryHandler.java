@@ -12,13 +12,14 @@ import org.example.spi.RequestHandler;
 import java.util.List;
 
 @Address("/countries")
-public class Jpa implements RequestHandler {
+public class CountryHandler implements RequestHandler {
 
     @Override
     public HttpResponse handleRequest(HttpRequest httpRequest) {
         CountryDAO countryDAO = new CountryDAOWithJPAImpl();
         List<Country> list = countryDAO.getAll();
 
+        // json module
         Gson gson = new Gson();
         String json = gson.toJson(list);
 

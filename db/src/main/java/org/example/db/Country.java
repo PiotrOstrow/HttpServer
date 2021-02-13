@@ -4,19 +4,25 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="Countries")
+@Table(name = "Countries", schema = "dbo")
 public class Country {
-    public Country(){
+
+    @Id
+    @Column(name = "Country")
+    private String id;
+
+    private String region;
+    private String population;
+
+    public Country() {
 
     }
 
-    @Id
-    private String id;
-    @Column(name="Region")
-    private String region;
-    @Column(name="Population")
-    private String population;
-
+    public Country(String id, String region, String population){
+        this.id = id;
+        this.region = region;
+        this.population = population;
+    }
 
     public String getId() {
         return id;
@@ -37,17 +43,13 @@ public class Country {
         this.population = population;
     }
 
-    public Country(String id, String region, String population){
-        this.id = id;
-        this.region = region;
-        this.population = population;
-    }
-
-
     @Override
     public String toString() {
-
-        return "Country [id=" + id + ", Region=" + region + ", Population=" + population + "]";
+        return "Country{" +
+                "id='" + id + '\'' +
+                ", region='" + region + '\'' +
+                ", population='" + population + '\'' +
+                '}';
     }
 }
 

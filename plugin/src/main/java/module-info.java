@@ -1,5 +1,5 @@
-import org.example.plugin.CommentsHandler;
-import org.example.plugin.Jpa;
+import org.example.plugin.CommentHandler;
+import org.example.plugin.CountryHandler;
 import org.example.plugin.UserHandler;
 import org.example.spi.RequestHandler;
 
@@ -10,5 +10,5 @@ module org.example.plugin {
 	requires org.example.db;
 	requires com.google.gson;
 
-	provides RequestHandler with UserHandler, Jpa, CommentsHandler;
+	provides RequestHandler with UserHandler, CountryHandler, CommentHandler;
 }

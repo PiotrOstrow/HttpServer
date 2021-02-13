@@ -19,6 +19,7 @@ public class UserHandler implements RequestHandler {
 		UserDAO userDAO = new UserDaoJDBCImpl();
 		List<User> list = userDAO.getAll();
 
+		//json module
 		Gson gson = new Gson();
 		String json = gson.toJson(list);
 

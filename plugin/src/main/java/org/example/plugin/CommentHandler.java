@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Address("/comments.html")
-public class CommentsHandler implements RequestHandler {
+public class CommentHandler implements RequestHandler {
 
 	private CommentDAO commentDao;
 

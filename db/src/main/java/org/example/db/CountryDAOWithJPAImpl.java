@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CountryDAOWithJPAImpl implements CountryDAO {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPA");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("Unit1");
 
     @Override
     public void create(Country c) {
