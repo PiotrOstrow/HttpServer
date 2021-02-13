@@ -1,6 +1,7 @@
 package org.example.method;
 
 import org.example.fileutil.FileReader;
+import org.example.http.HttpMethod;
 import org.example.http.HttpRequest;
 import org.example.http.HttpResponse;
 import org.example.spi.Method;
@@ -10,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-@Method({"GET", "POST", "HEAD"})
+@Method({HttpMethod.GET, HttpMethod.HEAD, HttpMethod.POST})
 public class MethodHandler implements RequestHandler {
 
 	@Override

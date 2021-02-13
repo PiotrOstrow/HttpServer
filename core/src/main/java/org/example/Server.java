@@ -50,6 +50,6 @@ public class Server {
 		socket.getOutputStream().flush();
 
 		// probably remove this line if one connection is to handle multiple requests
-		socket.getOutputStream().close();
+		//socket.getOutputStream().close();
 	}
 }
