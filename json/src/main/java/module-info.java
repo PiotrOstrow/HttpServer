@@ -1,3 +1,3 @@
-module json {
-    requires com.google.gson;
+module org.example.json {
+    exports org.example.json;
 }

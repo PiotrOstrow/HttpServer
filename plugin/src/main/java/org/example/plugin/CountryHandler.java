@@ -1,11 +1,11 @@
 package org.example.plugin;
 
-import com.google.gson.Gson;
 import org.example.db.Country;
 import org.example.db.CountryDAO;
 import org.example.db.CountryDAOWithJPAImpl;
 import org.example.http.HttpRequest;
 import org.example.http.HttpResponse;
+import org.example.json.JsonConverter;
 import org.example.spi.Address;
 import org.example.spi.RequestHandler;
 
@@ -19,9 +19,8 @@ public class CountryHandler implements RequestHandler {
         CountryDAO countryDAO = new CountryDAOWithJPAImpl();
         List<Country> list = countryDAO.getAll();
 
-        // json module
-        Gson gson = new Gson();
-        String json = gson.toJson(list);
+        JsonConverter jsonConverter = new JsonConverter();
+        String json = jsonConverter.convertToJson(list);
 
         HttpResponse response = new HttpResponse();
         response.setHeader("Content-Type", "application/json");

@@ -8,7 +8,7 @@ module org.example.plugin {
 	requires org.example.spi;
 	requires org.example.fileutil;
 	requires org.example.db;
-	requires com.google.gson;
+	requires org.example.json;
 
 	provides RequestHandler with UserHandler, CountryHandler, CommentHandler;
 }
