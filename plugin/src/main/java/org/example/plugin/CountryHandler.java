@@ -2,7 +2,7 @@ package org.example.plugin;
 
 import org.example.db.Country;
 import org.example.db.CountryDAO;
-import org.example.db.CountryDAOWithJPAImpl;
+import org.example.db.CountryDaoJPAImpl;
 import org.example.http.HttpRequest;
 import org.example.http.HttpResponse;
 import org.example.json.JsonConverter;
@@ -16,7 +16,7 @@ public class CountryHandler implements RequestHandler {
 
     @Override
     public HttpResponse handleRequest(HttpRequest httpRequest) {
-        CountryDAO countryDAO = new CountryDAOWithJPAImpl();
+        CountryDAO countryDAO = new CountryDaoJPAImpl();
         List<Country> list = countryDAO.getAll();
 
         JsonConverter jsonConverter = new JsonConverter();

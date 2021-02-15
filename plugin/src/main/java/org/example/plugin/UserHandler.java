@@ -2,7 +2,7 @@ package org.example.plugin;
 
 import org.example.db.User;
 import org.example.db.UserDAO;
-import org.example.db.UserDaoJDBCImpl;
+import org.example.db.UserDaoJPAImpl;
 import org.example.http.HttpRequest;
 import org.example.http.HttpResponse;
 import org.example.json.JsonConverter;
@@ -16,7 +16,7 @@ public class UserHandler implements RequestHandler {
 
 	@Override
 	public HttpResponse handleRequest(HttpRequest httpRequest) {
-		UserDAO userDAO = new UserDaoJDBCImpl();
+		UserDAO userDAO = new UserDaoJPAImpl();
 		List<User> list = userDAO.getAll();
 
 		JsonConverter jsonConverter = new JsonConverter();

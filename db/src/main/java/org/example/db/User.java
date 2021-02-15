@@ -1,13 +1,25 @@
 package org.example.db;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Users", schema = "dbo")
 public class User {
+
+    @Id
     private String id;
+
     private String userName;
     private String password;
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
+
+    public User() {
+    }
 
     public User(String id, String userName, String password, String firstName, String lastName, String email, String phone) {
         this.id = id;

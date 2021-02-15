@@ -5,25 +5,24 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-
-public class CountryDAOWithJPAImpl implements CountryDAO {
-
+public class UserDaoJPAImpl implements UserDAO {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("Unit1");
 
     @Override
-    public void create(Country c) {
+    public User create(User u) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.persist(c);
+        em.persist(u);
         em.getTransaction().commit();
+        return u;
     }
 
     @Override
-    public List<Country> getAll() {
-        List<Country> list;
+    public List<User> getAll() {
+        List<User> list;
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        list = em.createQuery("from Country", Country.class).getResultList();
+        list = em.createQuery("from User", User.class).getResultList();
         em.getTransaction().commit();
         return list;
     }
