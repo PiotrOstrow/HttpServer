@@ -36,8 +36,8 @@ public class CommentHandler implements RequestHandler {
 	}
 
 	private void saveComment(HttpRequest httpRequest) {
-		String name = httpRequest.getParameter("name");
-		String comment = httpRequest.getParameter("comment");
+		String name = httpRequest.getParameterString("name");
+		String comment = httpRequest.getParameterString("comment");
 
 		if(name != null && comment != null)
 			commentDao.create(new Comment(name, comment));
