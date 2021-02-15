@@ -56,7 +56,7 @@ public class HttpRequestParser {
 		if(contentType.startsWith("multipart/form-data"))
 			parseMultiFormData(request, stream);
 		else if(contentType.startsWith("application/x-www-form-urlencoded"))
-			parseParameters(request, stream);
+			parseWWWFormParametersPOST(request, stream);
 		else
 			throw new RuntimeException("Unsupported content type: " + contentType);
 	}
