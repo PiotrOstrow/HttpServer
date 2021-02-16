@@ -12,14 +12,10 @@ public class Image {
 
     private String name;
 
-    @Lob
-    private byte[] content;
-
     public Image() {}
 
-    public Image(String name, byte[] content) {
+    public Image(String name) {
         this.name = name;
-        this.content = content;
     }
 
     public long getId() {
@@ -36,13 +32,5 @@ public class Image {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public byte[] getContent() {
-        return content;
-    }
-
-    public void setContent(byte[] content) {
-        this.content = content;
     }
 }

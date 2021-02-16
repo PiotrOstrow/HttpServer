@@ -39,13 +39,13 @@ public class ImageHandler implements RequestHandler {
 
     private void saveImage(HttpRequest httpRequest) {
         String name = httpRequest.getParameterString("name");
-        byte[] content = httpRequest.getParameter("").getData();
 
-        if(name != null && content != null)
-            imageDao.create(new Image(name, content));
+        if(name != null)
+            imageDao.create(new Image(name));
     }
 
-    private byte[] getImages() {
+    private String getImages() {
+        List<Image> imageList = imageDao.getAll();
 
     }
 
