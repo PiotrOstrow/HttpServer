@@ -18,11 +18,8 @@
 </head>
 <body>
 <div>
-    <form action="images.html" method="POST" style="margin: auto">
-        <label for="name">Name:</label>
-        <input type="image" id="name" name="name"><br>
-        <label for="image">Image:</label><br>
-        <textarea id="image" name="image"></textarea><br><br>
+    <form action="images.html" method="POST" enctype="multipart/form-data" style="margin: auto">
+        <input type="file" id="file" name="file"><br>
         <input type="submit" value="Submit">
     </form>
     <br>

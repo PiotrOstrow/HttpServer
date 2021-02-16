@@ -17,7 +17,13 @@ public class RequestInputStream extends BufferedInputStream {
 		super(in);
 	}
 
-	public byte[] readParamData(String boundary) throws IOException {
+	/**
+	 *
+	 * @param boundary
+	 * @param parameter parameter to put data into
+	 * @return true if end boundary was read meaning there is no more data to read
+	 */
+	public boolean readParamData(String boundary, Parameter parameter) throws IOException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream() {
 			@Override
 			public synchronized byte[] toByteArray() {
@@ -33,12 +39,13 @@ public class RequestInputStream extends BufferedInputStream {
 		}
 
 		// -2 for break line characters at the end
-		return Arrays.copyOfRange(baos.toByteArray(), 0, baos.size() - 2);
+		parameter.setData(Arrays.copyOfRange(baos.toByteArray(), 0, baos.size() - 2));
+		return boundaryData.length != read;
 	}
 
 	private boolean compareBoundary(byte[] boundaryData, int length) {
-		// -2 for line break
-		if(boundaryData.length != length - 2)
+		// -2 for line break, delta 2 in case the boundary read was the end boundary with 2 extra - characters
+		if(Math.abs(boundaryData.length - (length - 2)) > 2)
 			return false;
 
 		for(int i = 0; i < boundaryData.length; i++)

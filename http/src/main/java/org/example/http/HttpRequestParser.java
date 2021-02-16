@@ -72,11 +72,12 @@ public class HttpRequestParser {
 		String endBoundary = boundary + "--";
 
 		Parameter parameter = new Parameter();
+		boolean eof = false;
 
 		// First line should be boundary
 		String line = stream.readLine();
 		// Next lines should be content-type or content-disposition, read until empty line
-		while(!(line = stream.readLine()).contains(endBoundary)) {
+		while(!eof && !(line = stream.readLine()).contains(endBoundary)) {
 			if(!line.isEmpty()){
 				parseMultipartHeaders(parameter, line);
 			} else { // if line is empty, value is next
@@ -84,8 +85,7 @@ public class HttpRequestParser {
 				if(parameter.getContentType().isEmpty()) {
 					parameter.setData(stream.readLine().getBytes());
 				} else {
-					byte[] data = stream.readParamData(boundary);
-					parameter.setData(data);
+					eof = stream.readParamData(boundary, parameter);
 				}
 				request.addParameter(parameter.getName(), parameter);
 				parameter = new Parameter();
