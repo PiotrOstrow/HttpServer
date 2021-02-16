@@ -7,7 +7,8 @@ import java.util.Map;
 
 public class HttpResponse {
 
-	private final String statusLine;
+	private final int statusCode;
+	private final String statusText;
 	private final Map<String, String> headers = new HashMap<>();
 
 	private byte[] body = new byte[0];
@@ -17,7 +18,8 @@ public class HttpResponse {
 	}
 
 	public HttpResponse(int statusCode, String statusText) {
-		statusLine = "HTTP/1.1 " + statusCode + " " + statusText;
+		this.statusCode = statusCode;
+		this.statusText = statusText;
 	}
 
 	public void setHeader(String header, String value) {
@@ -34,7 +36,7 @@ public class HttpResponse {
 	}
 
 	public String getStatusLine() {
-		return statusLine;
+		return "HTTP/1.1 " + statusCode + " " + statusText;
 	}
 
 	public Map<String, String> getHeaders() {
@@ -43,5 +45,9 @@ public class HttpResponse {
 
 	public byte[] getBody() {
 		return body;
+	}
+
+	public int getStatusCode() {
+		return statusCode;
 	}
 }

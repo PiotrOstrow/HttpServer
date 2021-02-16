@@ -28,10 +28,20 @@ public class Server {
 
 	private static void handleConnection(Socket socket) {
 		try {
-			HttpRequest request = HttpRequestParser.parse(socket.getInputStream());
-			RequestHandler requestHandler = ServiceProvider.getRequestHandler(request);
-			HttpResponse httpResponse = requestHandler.handleRequest(request);
-			sendResponse(socket, httpResponse);
+			while(true) {
+				HttpRequest request = HttpRequestParser.parse(socket.getInputStream());
+				RequestHandler requestHandler = ServiceProvider.getRequestHandler(request);
+				HttpResponse httpResponse = requestHandler.handleRequest(request);
+
+				httpResponse.setHeader("Keep-Alive", "timeout=5, max=1000");
+
+				sendResponse(socket, httpResponse);
+
+				if(httpResponse.getStatusCode() == 404){
+					socket.close();
+					break;
+				}
+			}
 		} catch (IOException | RuntimeException e) {
 			e.printStackTrace();
 		}
@@ -48,8 +58,5 @@ public class Server {
 
 		socket.getOutputStream().write(response.getBody());
 		socket.getOutputStream().flush();
-
-		// probably remove this line if one connection is to handle multiple requests
-		socket.getOutputStream().close();
 	}
 }
