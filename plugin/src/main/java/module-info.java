@@ -1,7 +1,4 @@
-import org.example.plugin.CommentHandler;
-import org.example.plugin.CountryHandler;
-import org.example.plugin.UploadTestHandler;
-import org.example.plugin.UserHandler;
+import org.example.plugin.*;
 import org.example.spi.RequestHandler;
 
 module org.example.plugin {
@@ -11,5 +8,5 @@ module org.example.plugin {
 	requires org.example.db;
 	requires org.example.json;
 
-	provides RequestHandler with UserHandler, CountryHandler, CommentHandler, UploadTestHandler;
+	provides RequestHandler with UserHandler, CountryHandler, CommentHandler, ImageHandler, UploadTestHandler;
 }
