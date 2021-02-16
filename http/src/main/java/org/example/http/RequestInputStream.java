@@ -59,13 +59,14 @@ public class RequestInputStream extends BufferedInputStream {
 	 * @return number of bytes read, including break line characters
 	 */
 	private int readUntilBreakLine() throws IOException {
-		byte[] b = new byte[2];
 		int bytesRead = 0;
-		while (bytesRead < BUFFER_SIZE) {
-			buffer[bytesRead++] = (byte) read();
-			if (buffer[bytesRead - 1] == '\r') {
-				buffer[bytesRead++] = (byte) read();
-				if( buffer[bytesRead - 1] == '\n')
+
+		while (bytesRead < BUFFER_SIZE - 1) {
+			buffer[bytesRead] = (byte) read();
+			if (buffer[bytesRead++] == '\r') {
+				buffer[bytesRead] = (byte) read();
+				if (buffer[bytesRead++
+						] == '\n')
 					break;
 			}
 		}
