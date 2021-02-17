@@ -12,8 +12,6 @@ public class HttpRequestParser {
 
 		// parse start line
 		String line = requestInputStream.readLine();
-		if(line == null)
-			throw new IOException("Connection closed");
 		String[] split = line.split(" ");
 
 		if(split.length < 3)

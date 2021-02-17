@@ -55,6 +55,14 @@ public class RequestInputStream extends BufferedInputStream {
 		return true;
 	}
 
+	@Override
+	public synchronized int read() throws IOException {
+		int b = super.read();
+		if(b == -1)
+			throw new IOException("Connection closed");
+		return b;
+	}
+
 	/**
 	 * @return number of bytes read, including break line characters
 	 */
@@ -65,8 +73,7 @@ public class RequestInputStream extends BufferedInputStream {
 			buffer[bytesRead] = (byte) read();
 			if (buffer[bytesRead++] == '\r') {
 				buffer[bytesRead] = (byte) read();
-				if (buffer[bytesRead++
-						] == '\n')
+				if (buffer[bytesRead++] == '\n')
 					break;
 			}
 		}
