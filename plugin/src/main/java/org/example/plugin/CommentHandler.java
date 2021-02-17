@@ -56,7 +56,7 @@ public class CommentHandler implements RequestHandler {
 			stringBuilder.append(dateFormat.format(comment.getDate()));
 			stringBuilder.append("<br>");
 			stringBuilder.append(comment.getComment());
-			stringBuilder.append("<div><br><hr>");
+			stringBuilder.append("</div><br><hr>");
 		}
 
 		return stringBuilder.toString();

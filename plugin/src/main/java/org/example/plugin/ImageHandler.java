@@ -61,6 +61,17 @@ public class ImageHandler implements RequestHandler {
 
     private String getImages() {
         List<Image> imageList = imageDao.getAll();
-        return "";
+        StringBuilder stringBuilder = new StringBuilder();
+        for(Image image : imageList) {
+            stringBuilder.append("<a href=\"");
+            stringBuilder.append("upload/");
+            stringBuilder.append(image.getId());
+            stringBuilder.append(".png\">");
+            stringBuilder.append("<img src=\"upload/");
+            stringBuilder.append(image.getId());
+            stringBuilder.append(".png\">");
+            stringBuilder.append("</a>");
+        }
+        return stringBuilder.toString();
     }
 }
